@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
 
-function User() {return knex('users')}
+function Users() {return knex('users')}
 
 // **************************** CREATE ***********************************
 
@@ -11,7 +11,7 @@ function User() {return knex('users')}
 router.post('/', function(req, res){
 
   Users().insert({
-    name: req.body.name
+    name: req.body.name,
     email: req.body.email
   }, ['id', 'name', 'email']).then(function(result){
     res.json(result);
@@ -31,8 +31,15 @@ router.get('/', function (req, res){
 
 // ^^^^^^ Read One User ^^^^^^
 
-router.get('/', function(req, res){
-  knex('users').where('id', req.params.id).first().then(function(result){
+router.get('/:id', function(req, res){
+  knex('users')
+  .where('id', req.params.id).first().then(function(result){
     res.json(result)
   })
 })
+
+// **************************** DELETE ***********************************
+
+// ^^^^^^ Delete User ^^^^^^
+
+module.exports = router

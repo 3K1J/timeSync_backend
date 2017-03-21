@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 8080
 const session = require('express-session')
 require('dotenv').config()
 const authRoute = require('./routes/routes.js')
+const usersRoute = require('./routes/users.js')
 
 // const passportLocal = require('passport-local')
 
@@ -30,6 +31,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.static('Public'))
 app.use('/', authRoute)
+app.use('/users', usersRoute)
 
 
 
