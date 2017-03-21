@@ -7,10 +7,12 @@ const app = express()
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8080
 const session = require('express-session')
+require('dotenv').config()
 
 // const passportLocal = require('passport-local')
 
 const passport = require('./passport')
+// console.log('test ', logger);
 
 
 app.use(logger('dev'))

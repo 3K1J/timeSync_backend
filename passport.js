@@ -24,4 +24,4 @@ passport.deserializeUser(function (profile, done){
   done(null, profile)
 })
 
-module.export = passport
+module.exports = passport
