@@ -32,14 +32,9 @@ router.get('/', function (req, res){
 // ^^^^^^ Read One User ^^^^^^
 
 router.get('/:id', function(req, res){
-  knex('users')
-  .where('id', req.params.id).first().then(function(result){
+  knex('users').where('id', req.params.id).first().then(function(result){
     res.json(result)
   })
 })
-
-// **************************** DELETE ***********************************
-
-// ^^^^^^ Delete User ^^^^^^
 
 module.exports = router
