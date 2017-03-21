@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 8080
 const session = require('express-session')
 require('dotenv').config()
+const authRoute = require('./routes/routes.js')
 
 // const passportLocal = require('passport-local')
 
@@ -28,6 +29,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.static('Public'))
 app.use(cors())
+app.use('/', authRoute)
 
 
 
