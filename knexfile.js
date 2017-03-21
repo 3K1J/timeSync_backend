@@ -4,12 +4,12 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/timeSync'
+    connection: 'postgres://localhost/timesync'
   },
 
 
   production: {
     client: 'pg',
-    connection: 'process.env.DATABASE_URL'
-
-};
+    connection: process.env.DATABASE_URL
+  }
+}
