@@ -7,7 +7,8 @@ var queries = require('./db/queries')
 
 passport.use(new SlackStrategy({
   clientID: CLIENT_ID,
-  clientSecret: CLIENT_SECRET
+  clientSecret: CLIENT_SECRET,
+  callbackURL: CALLBACK_URL
 }, (accessToken, refreshToken, profile, done) => {
 
   queries.verifyOrAddUser(profile)

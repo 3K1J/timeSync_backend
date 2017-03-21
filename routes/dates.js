@@ -10,6 +10,11 @@ router.get('/auth/slack/callback',
   (req, res) => res.redirect('/main')
 )
 
+router.get('/dates/:event_ID' (req, res)=>{
+  queries.getDates(req.params.event_ID)
+    .then(dates=>dates)
+})
+
 
 
 module.exports = router

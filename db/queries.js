@@ -18,3 +18,7 @@ function verifyOrAddUser(profile) {
       }
     })
 }
+
+function getDates(event_ID) {
+  return database("dates").select("*").where("event_ID", event_ID)
+}

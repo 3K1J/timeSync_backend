@@ -10,6 +10,7 @@ const session = require('express-session')
 require('dotenv').config()
 const authRoute = require('./routes/routes.js')
 const usersRoute = require('./routes/users.js')
+const datesRoute = require('./routes/dates.js')
 
 // const passportLocal = require('passport-local')
 
@@ -32,7 +33,7 @@ app.use(passport.session())
 app.use(express.static('Public'))
 app.use('/', authRoute)
 app.use('/users', usersRoute)
-
+app.use('/dates', datesRoute)
 
 
 app.listen(PORT, ()=> {
