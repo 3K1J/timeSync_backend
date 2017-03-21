@@ -8,3 +8,5 @@ router.get('/auth/slack/callback',
   passport.authorize('slack', { failureRedirect: '/login' }),
   (req, res) => res.redirect('/main')
 );
+
+module.exports = router
