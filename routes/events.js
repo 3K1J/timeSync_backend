@@ -33,7 +33,7 @@ router.post('/', function(req, res){
 // ^^^^^^ Read One Event ^^^^^^
 
 router.get('/:id', function(req, res){
-  knex('events').where(req.params.id).first().then(function(result){
+  knex('events').where('id', req.params.id).first().then(function(result){
     res.json(result)
   })
 })
