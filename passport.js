@@ -1,4 +1,4 @@
-const {CLIENT_ID, CLIENT_SECRET} = process.env,
+const {CLIENT_ID, CLIENT_SECRET, CALLBACK_URL} = process.env,
       SlackStrategy = require('passport-slack').Strategy,
       passport = require('passport')
 
@@ -7,7 +7,8 @@ var queries = require('./db/queries')
 
 passport.use(new SlackStrategy({
   clientID: CLIENT_ID,
-  clientSecret: CLIENT_SECRET
+  clientSecret: CLIENT_SECRET,
+  callbackURL: CALLBACK_URL
 }, (accessToken, refreshToken, profile, done) => {
 
   queries.verifyOrAddUser(profile)

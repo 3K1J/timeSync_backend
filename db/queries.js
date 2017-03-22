@@ -1,7 +1,10 @@
 const database = require('./knex.js')
 
 module.exports = {
-  verifyOrAddUser
+  verifyOrAddUser,
+  getDates,
+  getDate,
+  postDate
 }
 
 function verifyOrAddUser(profile) {
@@ -17,4 +20,16 @@ function verifyOrAddUser(profile) {
         return profile
       }
     })
+}
+
+function getDates(event_ID) {
+  return database('dates').select('*').where('event_ID', event_ID)
+}
+
+function getDate(date_ID) {
+  return database('dates').select('*').where('id', date_ID)
+}
+
+function postDate(date) {
+  return database('dates').insert(date)
 }
