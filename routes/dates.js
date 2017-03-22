@@ -3,6 +3,13 @@ var router = express.Router()
 var queries = require('../db/queries')
 
 
+router.get('/all', (req, res)=>{
+  queries.getAllDates()
+    .then(dates=>{
+      res.json(dates)
+    })
+})
+
 router.get('/:event_ID', (req, res)=>{
   queries.getDates(req.params.event_ID)
     .then(dates=>{
