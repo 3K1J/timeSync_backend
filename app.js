@@ -12,6 +12,7 @@ const authRoute = require('./routes/routes.js')
 const usersRoute = require('./routes/users.js')
 const datesRoute = require('./routes/dates.js')
 const eventsRoute = require('./routes/events.js')
+// const eventsUsersRoute = require('./routes/events_users.js')
 
 // const passportLocal = require('passport-local')
 
@@ -35,6 +36,7 @@ app.use('/', authRoute)
 app.use('/users', usersRoute)
 app.use('/dates', datesRoute)
 app.use('/events', eventsRoute)
+// app.use('/eventsUsers', eventsUsersRoute)
 
 
 app.listen(PORT, ()=> {
