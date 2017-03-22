@@ -10,14 +10,14 @@ router.get('/all', (req, res)=>{
     })
 })
 
-router.get('/event/:event_id', (req, res)=>{
-  queries.getEventsInviteesByEvent(req.params.event_ID)
+router.get('/eventID/:event_id', (req, res)=>{
+  queries.getEventsInviteesByEvent(req.params.event_id)
     .then(EventsInvitees=>{
       res.json(EventsInvitees)
     })
 })
 
-router.get('/user/:user_id', (req, res)=>{
+router.get('/userID/:user_id', (req, res)=>{
   queries.getEventsInviteesByUser(req.params.user_id)
     .then(EventsInvitees=>{
       res.json(EventsInvitees)

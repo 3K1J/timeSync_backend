@@ -12,15 +12,20 @@ module.exports = {
   postEventInvitee
 }
 
-function verifyOrAddUser(user) {
-  return database('users').select('*').where('name', user.name)
+function verifyOrAddUser(checkUser) {
+  return database('users').select('*').where('name', checkUser.name)
     .then(user =>{
       if (user.length < 1) {
         var newUser = {}
-        newUser.name = user.name
-        newUser.email = user.email
-        database("users").insert(newUser)
-          .then(()=>user)
+        newUser.name = checkUser.name
+        newUser.email = checkUser.email
+        return database("users").insert(newUser).returning('id')
+          .then((user_id)=>{
+            var newUserArry = []
+            newUser.id = user_id[0]
+            newUserArry[0] = newUser
+            return newUserArry
+          })
       }else {
         return user
       }
@@ -40,7 +45,7 @@ function getDate(date_id) {
 }
 
 function postDate(date) {
-  return database('dates').insert(date)
+  return database('dates').insert(date).returning('id')
 }
 
 

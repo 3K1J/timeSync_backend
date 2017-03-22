@@ -9,16 +9,6 @@ function Users() {return knex('users')}
 
 // ^^^^^^ Create User ^^^^^^
 
-// router.post('/', function(req, res){
-//
-//   Users().insert({
-//     name: req.body.name,
-//     email: req.body.email
-//   }, ['id', 'name', 'email']).then(function(result){
-//     res.json(result);
-//   })
-// })
-
 router.post('/', function(req, res){
   queries.verifyOrAddUser(req.body)
     .then(function(result){
