@@ -27,7 +27,7 @@ router.get('/date/:date_ID', (req, res)=>{
 router.post('/', (req, res)=>{
   queries.postDate(req.body)
     .then((date)=>{
-      res.send('Date entered')
+      res.send(date)
     })
     .catch(err=>{
       res.status(500).send('Date entry failed')
