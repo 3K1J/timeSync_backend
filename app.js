@@ -10,13 +10,13 @@ const session = require('express-session')
 require('dotenv').config()
 const authRoute = require('./routes/routes.js')
 const usersRoute = require('./routes/users.js')
+const datesRoute = require('./routes/dates.js')
 const eventsRoute = require('./routes/events.js')
 // const eventsUsersRoute = require('./routes/events_users.js')
 
 // const passportLocal = require('passport-local')
 
 const passport = require('./passport')
-// console.log('test ', logger);
 
 
 app.use(cors())
@@ -34,6 +34,7 @@ app.use(passport.session())
 app.use(express.static('Public'))
 app.use('/', authRoute)
 app.use('/users', usersRoute)
+app.use('/dates', datesRoute)
 app.use('/events', eventsRoute)
 // app.use('/eventsUsers', eventsUsersRoute)
 
