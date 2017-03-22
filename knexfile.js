@@ -4,7 +4,7 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/timesync'
+    connection: 'postgres://localhost/timeSync'
   },
 
 
