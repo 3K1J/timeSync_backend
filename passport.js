@@ -1,4 +1,4 @@
-const {CLIENT_ID, CLIENT_SECRET} = process.env,
+const {CLIENT_ID, CLIENT_SECRET, CALLBACK_URL} = process.env,
       SlackStrategy = require('passport-slack').Strategy,
       passport = require('passport')
 

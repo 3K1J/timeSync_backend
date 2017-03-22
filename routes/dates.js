@@ -1,20 +1,30 @@
 var express = require('express')
 var router = express.Router()
 var queries = require('../db/queries')
-var passport = require('../passport')
 
-router.get('/auth/slack', passport.authorize('slack'))
 
-router.get('/auth/slack/callback',
-  passport.authorize('slack', { failureRedirect: '/login' }),
-  (req, res) => res.redirect('/main')
-)
-
-router.get('/dates/:event_ID' (req, res)=>{
+router.get('/:event_ID', (req, res)=>{
   queries.getDates(req.params.event_ID)
-    .then(dates=>dates)
+    .then(dates=>{
+      res.json(dates)
+    })
 })
 
+router.get('/date/:date_ID', (req, res)=>{
+  queries.getDate(req.params.date_ID)
+    .then(date=>{
+      res.json(date)
+    })
+})
 
+router.post('/', (req, res)=>{
+  queries.postDate(req.body)
+    .then((date)=>{
+      res.send('Date entered')
+    })
+    .catch(err=>{
+      res.status(500).send('Date entry failed')
+    })
+})
 
 module.exports = router
