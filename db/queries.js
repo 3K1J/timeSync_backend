@@ -5,20 +5,29 @@ module.exports = {
   getAllDates,
   getDates,
   getDate,
-  postDate
+  postDate,
+  getAllEventsInvitees,
+  getEventsInviteesByEvent,
+  getEventsInviteesByUser,
+  postEventInvitee
 }
 
-function verifyOrAddUser(profile) {
-  return database('users').select('*').where('email', profile.user.email)
+function verifyOrAddUser(checkUser) {
+  return database('users').select('*').where('name', checkUser.name)
     .then(user =>{
       if (user.length < 1) {
         var newUser = {}
-        newUser.name = profile.displayName
-        newUser.email = profile.user.email
-        database("users").insert(newUser)
-          .then(()=>profile)
+        newUser.name = checkUser.name
+        newUser.email = checkUser.email
+        return database("users").insert(newUser).returning('id')
+          .then((user_id)=>{
+            var newUserArry = []
+            newUser.id = user_id[0]
+            newUserArry[0] = newUser
+            return newUserArry
+          })
       }else {
-        return profile
+        return user
       }
     })
 }
@@ -36,5 +45,26 @@ function getDate(date_id) {
 }
 
 function postDate(date) {
-  return database('dates').insert(date)
+  return database('dates').insert(date).returning('id')
+}
+
+
+
+
+
+function getAllEventsInvitees() {
+  return database('events_users').select('*')
+}
+
+function getEventsInviteesByEvent(event_id) {
+  return database('events_users').select('*').where('event_id', event_id)
+}
+
+function getEventsInviteesByUser(user_id) {
+  return database('events_users').select('*').where('user_id', user_id)
+
+}
+
+function postEventInvitee(eventUser){
+  return database('events_users').insert(eventUser)
 }

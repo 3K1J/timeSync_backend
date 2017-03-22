@@ -30,7 +30,7 @@ router.get('/', function(req, res){
   })
 });
 
-// ^^^^^^ Read One Dates_users ^^^^^^
+// ^^^^^^ Reads dates by date_id in Dates_users ^^^^^^
 
 router.get('/:date_id', function(req, res){
 
