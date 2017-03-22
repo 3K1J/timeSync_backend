@@ -38,7 +38,7 @@ app.use('/users', usersRoute)
 app.use('/dates', datesRoute)
 app.use('/events', eventsRoute)
 app.use('/dates_users', dates_usersRoute)
-app.use('/eventsUsers', eventsUsersRoute)
+app.use('/events_users', eventsUsersRoute)
 
 
 app.listen(PORT, ()=> {

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex');
+var queries = require('../db/queries')
 
 function Users() {return knex('users')}
 
@@ -8,16 +9,22 @@ function Users() {return knex('users')}
 
 // ^^^^^^ Create User ^^^^^^
 
+// router.post('/', function(req, res){
+//
+//   Users().insert({
+//     name: req.body.name,
+//     email: req.body.email
+//   }, ['id', 'name', 'email']).then(function(result){
+//     res.json(result);
+//   })
+// })
+
 router.post('/', function(req, res){
-
-  Users().insert({
-    name: req.body.name,
-    email: req.body.email
-  }, ['id', 'name', 'email']).then(function(result){
-    res.json(result);
-  })
+  queries.verifyOrAddUser(req.body)
+    .then(function(result){
+        res.json(result);
+      })
 })
-
 // **************************** READ ***********************************
 
 // ^^^^^^ Read User ^^^^^^
