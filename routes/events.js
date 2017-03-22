@@ -6,7 +6,7 @@ function Events() {return knex('events')}
 
 // **************************** CREATE ***********************************
 
-// ^^^^^^ Create User ^^^^^^
+// ^^^^^^ Create Events ^^^^^^
 
 router.post('/', function(req, res){
 
@@ -21,7 +21,7 @@ router.post('/', function(req, res){
 
   // **************************** READ ***********************************
 
-  // ^^^^^^ Read User ^^^^^^
+  // ^^^^^^ Read Events ^^^^^^
 
   router.get('/', function(req, res){
 
@@ -30,10 +30,10 @@ router.post('/', function(req, res){
     })
   })
 
-// ^^^^^^ Read One User ^^^^^^
+// ^^^^^^ Read One Event ^^^^^^
 
 router.get('/:id', function(req, res){
-  knex('users').where(req.params.id).first().then(function(result){
+  knex('events').where(req.params.id).first().then(function(result){
     res.json(result)
   })
 })
