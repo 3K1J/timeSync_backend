@@ -32,9 +32,9 @@ router.get('/', function(req, res){
 
 // ^^^^^^ Read One Dates_users ^^^^^^
 
-router.get('/:id', function(req, res){
+router.get('/:date_id', function(req, res){
 
-  knex('dates_users').where(req.params.id).first().then(function(result){
+  knex('dates_users').select('*').where('date_id', req.params.date_id).then(function(result){
     res.json(result)
   })
 })
