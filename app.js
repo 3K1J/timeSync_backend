@@ -11,11 +11,11 @@ require('dotenv').config()
 const authRoute = require('./routes/routes.js')
 const usersRoute = require('./routes/users.js')
 const datesRoute = require('./routes/dates.js')
+const eventsRoute = require('./routes/events.js')
 
 // const passportLocal = require('passport-local')
 
 const passport = require('./passport')
-// console.log('test ', logger);
 
 
 app.use(cors())
@@ -34,6 +34,7 @@ app.use(express.static('Public'))
 app.use('/', authRoute)
 app.use('/users', usersRoute)
 app.use('/dates', datesRoute)
+app.use('/events', eventsRoute)
 
 
 app.listen(PORT, ()=> {
