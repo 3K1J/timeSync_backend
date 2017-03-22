@@ -22,12 +22,12 @@ function verifyOrAddUser(profile) {
     })
 }
 
-function getDates(event_ID) {
-  return database('dates').select('*').where('event_ID', event_ID)
+function getDates(event_id) {
+  return database('dates').select('*').where('event_id', event_id)
 }
 
-function getDate(date_ID) {
-  return database('dates').select('*').where('id', date_ID)
+function getDate(date_id) {
+  return database('dates').select('*').where('id', date_id)
 }
 
 function postDate(date) {
