@@ -23,7 +23,7 @@ exports.seed = function(knex) {
 
 
 
-        {date_id: knex('dates').where('date', 'March 8st 2017').select('id'),
+        {date_id: knex('dates').where('date', 'March 1st 2017').select('id'),
         user_id: knex('users').where('name', 'Jim John').select('id')},
 
         {date_id: knex('dates').where('date', 'March 8st 2017').select('id'),
