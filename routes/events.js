@@ -25,7 +25,7 @@ router.post('/', function(req, res){
 
   router.get('/', function(req, res){
 
-    knex('events').select().then(function(result){
+  knex('events').select().then(function(result){
       res.json(result);
     })
   })
@@ -34,6 +34,16 @@ router.post('/', function(req, res){
 
 router.get('/:id', function(req, res){
   knex('events').where('id', req.params.id).first().then(function(result){
+    res.json(result)
+  })
+})
+
+router.get('/:id/users', function(req, res){
+  knex('users')
+  .select('users.name as userName', 'users.id as userID', 'users.email as userEmail')
+  .join('events_users', 'events_users.user_id', '=', 'users.id')
+  .join('events', 'events_users.event_id', '=', 'events.id')
+  .where('events.id', req.params.id).then(function(result){
     res.json(result)
   })
 })
