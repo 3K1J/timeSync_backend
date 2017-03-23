@@ -32,8 +32,12 @@ router.post('/', function(req, res){
 
 // ^^^^^^ Read One Event ^^^^^^
 
-router.get('/:id', function(req, res){
-  knex('events').where('id', req.params.id).first().then(function(result){
+router.get('/:id/users', function(req, res){
+  knex('users')
+  .select()
+  .join('events_users', 'events_users.user_id', '=', 'users.id')
+  .join('events', 'events_users.event_id', '=', 'events.id')
+  .where('events.id', req.params.id).then(function(result){
     res.json(result)
   })
 })

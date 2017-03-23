@@ -22,14 +22,8 @@ router.post('/', function(req, res){
 
 router.get('/', function (req, res){
 
-  var getNames = knex('users')
-  if(req.query.event_id){
-    getNames
-      .join('events_users', 'events_users.user_id', '=', 'user.id')
-      .where('event_id', req.query.event_id)
-}
-      getNames.select().then(function(result){
-      res.json(result)
+  knex('users').select().then(function(result){
+    res.json(result)
   })
 })
 
