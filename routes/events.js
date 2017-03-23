@@ -25,7 +25,7 @@ router.post('/', function(req, res){
 
   router.get('/', function(req, res){
 
-    knex('events').select().then(function(result){
+  knex('events').select().then(function(result){
       res.json(result);
     })
   })
