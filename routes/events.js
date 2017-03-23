@@ -36,16 +36,14 @@ router.post('/', function(req, res){
             winner = result[i]
         }
       }
-      console.log();
-      res.json(winner)
-      // return winner
+      return winner
     })
-    // .then(function(winner){
-    //   knex('dates').select('*').where('id', winner.date_id).then(function(result){
-    //     result[0].count = winner.count
-    //     res.json(result)
-    //   })
-    // })
+    .then(function(winner){
+      knex('dates').select('*').where('id', winner.date_id).then(function(result){
+        result[0].count = winner.count
+        res.json(result)
+      })
+    })
   })
 
 
