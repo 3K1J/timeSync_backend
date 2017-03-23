@@ -21,6 +21,16 @@ router.post('/', function(req, res){
 
   // **************************** READ ***********************************
 
+  router.get('/:id/stats', function(req, res){
+
+    knex('events').where('events.id', req.params.id)
+    .join('dates', 'event_id', 'events.id')
+    .join('dates_users', 'dates_users.date_id', 'dates.id').count('dates_users.user_id').groupBy('date_id')
+    .then(res.json)
+
+  })
+
+
   // ^^^^^^ Read Events ^^^^^^
 
   router.get('/', function(req, res){
