@@ -23,11 +23,27 @@ router.post('/', function(req, res){
 
   router.get('/:id/stats', function(req, res){
 
-    knex('events').where('events.id', req.params.id)
+    knex('events').select('dates_users.date_id').where('events.id', req.params.id)
     .join('dates', 'event_id', 'events.id')
-    .join('dates_users', 'dates_users.date_id', 'dates.id').count('dates_users.user_id').groupBy('date_id')
-    .then(res.json)
-
+    .join('dates_users', 'dates_users.date_id', 'dates.id')
+    .groupBy('date_id').count('dates_users.user_id')
+    .then(function(result){
+      var winningCount = 0
+      var winner = {}
+      for (var i = 0; i < result.length; i++) {
+        if(result[i].count > winningCount){
+            winningCount = result[i].count
+            winner = result[i]
+        }
+      }
+      return winner
+    })
+    .then(function(winner){
+      knex('dates').select('*').where('id', winner.date_id).then(function(result){
+        result[0].count = winner.count
+        res.json(result)
+      })
+    })
   })
 
 

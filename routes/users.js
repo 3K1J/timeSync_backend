@@ -35,6 +35,15 @@ router.get('/:id', function(req, res){
   })
 })
 
+// ^^^^^^ Read Events by User ID ^^^^^^
+
+router.get('/:id/events', function(req, res){
+
+  knex('events').select('*').where('user_id', req.params.id).then(function(result){
+
+    res.json(result)
+  })
+})
 
 // **************************** UPDATE ****************************
 
