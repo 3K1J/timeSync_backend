@@ -6,6 +6,8 @@ module.exports = {
   getDates,
   getDate,
   postDate,
+  patchDateDateID,
+  patchDateEventID,
   getAllEventsInvitees,
   getEventsInviteesByEvent,
   getEventsInviteesByUser,
@@ -46,6 +48,14 @@ function getDate(date_id) {
 
 function postDate(date) {
   return database('dates').insert(date).returning('id')
+}
+
+function patchDateDateID(date_id, date) {
+  return database('dates').where('id', date_id).update(date)
+}
+
+function patchDateEventID(event_id, date) {
+  return database('dates').where('event_id', event_id).update(date)
 }
 
 

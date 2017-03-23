@@ -34,4 +34,18 @@ router.post('/', (req, res)=>{
     })
 })
 
+router.patch('/patchDateDateID/:date_ID', (req, res)=>{
+  queries.patchDateDateID(req.params.date_ID, req.body)
+    .then(date=>{
+      res.json(date)
+    })
+})
+
+router.patch('/patchDateEventID/:event_ID', (req, res)=>{
+  queries.patchDateEventID(req.params.event_ID, req.body)
+    .then(date=>{
+      res.json(date)
+    })
+})
+
 module.exports = router
