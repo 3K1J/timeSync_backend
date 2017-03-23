@@ -23,11 +23,20 @@ router.post('/', function(req, res){
 
   router.get('/:id/stats', function(req, res){
 
+    function addVotes(allDates) {
+      var totalVotes = 0
+      for (var i = 0; i < allDates.length; i++) {
+        totalVotes += parseInt(allDates[i].count)
+      }
+      return totalVotes
+    }
+
     knex('events').select('dates_users.date_id').where('events.id', req.params.id)
     .join('dates', 'event_id', 'events.id')
     .join('dates_users', 'dates_users.date_id', 'dates.id')
     .groupBy('date_id').count('dates_users.user_id')
     .then(function(result){
+      // console.log(result);
       var winningCount = 0
       var winner = {}
       for (var i = 0; i < result.length; i++) {
@@ -36,11 +45,15 @@ router.post('/', function(req, res){
             winner = result[i]
         }
       }
+      winner.currentVotes = addVotes(result)
       return winner
     })
     .then(function(winner){
+      console.log("winneer2!")
+      console.log(winner)
       knex('dates').select('*').where('id', winner.date_id).then(function(result){
         result[0].count = winner.count
+        result[0].currentVotes = winner.currentVotes
         res.json(result)
       })
     })
