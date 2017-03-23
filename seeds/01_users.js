@@ -9,9 +9,16 @@ exports.seed = function(knex) {
         {name: 'Ryan Phillips', email: 'rphillips4417@gmail.com'},
         {name: 'Tommy Krepp', email: 'tommykrepp@aol.com'},
         {name: 'Nathan Edlen', email: 'nathan.edlen@gmail.com'},
-        {name: 'Bill Boughton'},
-        {name: 'Brad Folkers'},
-        {name: 'Paul Torres'}
+        {name: 'Bill'},
+        {name: 'Brad'},
+        {name: 'Paul'},
+        {name: 'Paul V'},
+        {name: 'Bob Torres'},
+        {name: 'Jim John'},
+        {name: 'Koa To'},
+        {name: 'Jake'},
+        {name: 'Peter'},
+        {name: 'Peter Guy'}
       ]);
     });
 };
