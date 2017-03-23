@@ -51,4 +51,15 @@ router.put('/:id', function (req, res){
   })
 })
 
+// **************************** DELETE ****************************
+
+// ^^^^^^ Delete User ^^^^^^
+
+router.delete('/:id', function(req, res){
+
+  Users().where('id', req.params.id).del().then(function(result){
+    res.json(result)
+  })
+})
+
 module.exports = router
