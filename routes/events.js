@@ -34,7 +34,7 @@ router.post('/', function(req, res){
 
 router.get('/:id/users', function(req, res){
   knex('users')
-  .select()
+  .select('users.name as userName', 'users.id as userID')
   .join('events_users', 'events_users.user_id', '=', 'users.id')
   .join('events', 'events_users.event_id', '=', 'events.id')
   .where('events.id', req.params.id).then(function(result){
