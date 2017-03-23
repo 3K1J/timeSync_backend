@@ -32,6 +32,12 @@ router.post('/', function(req, res){
 
 // ^^^^^^ Read One Event ^^^^^^
 
+router.get('/:id', function(req, res){
+  knex('events').where('id', req.params.id).first().then(function(result){
+    res.json(result)
+  })
+})
+
 router.get('/:id/users', function(req, res){
   knex('users')
   .select('users.name as userName', 'users.id as userID', 'users.email as userEmail')
