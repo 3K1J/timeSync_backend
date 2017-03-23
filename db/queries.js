@@ -7,11 +7,15 @@ module.exports = {
   getDate,
   postDate,
   patchDateDateID,
-  patchDateEventID,
+  patchDatesEventID,
+  deleteDateDateID,
+  deleteDatesEventID,
   getAllEventsInvitees,
   getEventsInviteesByEvent,
   getEventsInviteesByUser,
-  postEventInvitee
+  postEventInvitee,
+  deleteEventsInviteesByEvent,
+  deleteEventsInviteesByUser
 }
 
 function verifyOrAddUser(checkUser) {
@@ -34,6 +38,10 @@ function verifyOrAddUser(checkUser) {
     })
 }
 
+//=======================================
+// DATE QUERIES
+//=======================================
+
 function getAllDates() {
   return database('dates').select('*')
 }
@@ -54,12 +62,22 @@ function patchDateDateID(date_id, date) {
   return database('dates').where('id', date_id).update(date)
 }
 
-function patchDateEventID(event_id, date) {
+function patchDatesEventID(event_id, date) {
   return database('dates').where('event_id', event_id).update(date)
 }
 
+function deleteDateDateID(date_id) {
+  return database('dates').where('id', date_id).del()
+}
+
+function deleteDatesEventID(event_id) {
+  return database('dates').where('event_id', event_id).del()
+}
 
 
+//=======================================
+// EVENT_USERS QUERIES
+//=======================================
 
 
 function getAllEventsInvitees() {
@@ -77,4 +95,12 @@ function getEventsInviteesByUser(user_id) {
 
 function postEventInvitee(eventUser){
   return database('events_users').insert(eventUser)
+}
+
+function deleteEventsInviteesByEvent(event_id) {
+
+}
+
+function deleteEventsInviteesByUser(user_id) {
+
 }

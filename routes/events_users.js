@@ -26,11 +26,25 @@ router.get('/userID/:user_id', (req, res)=>{
 
 router.post('/', (req, res)=>{
   queries.postEventInvitee(req.body)
-    .then((eventUser)=>{
-      res.send(eventUser)
+    .then((EventsInvitees)=>{
+      res.send(EventsInvitees)
     })
     .catch(err=>{
       res.status(500).send('Event_Invitee entry failed')
+    })
+})
+
+router.delete('/deleteEventID/:event_id', (req, res)=>{
+  queries.deleteEventsInviteesByEvent(req.params.event_id)
+    .then(EventsInvitees=>{
+      res.json(EventsInvitees)
+    })
+})
+
+router.delete('/deleteUserID/:user_id', (req, res)=>{
+  queries.deleteEventsInviteesByUser(req.params.user_id)
+    .then(EventsInvitees=>{
+      res.json(EventsInvitees)
     })
 })
 
