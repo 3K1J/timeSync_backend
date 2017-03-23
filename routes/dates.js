@@ -56,7 +56,7 @@ router.delete('/deleteDateDateID/:date_ID', (req, res)=>{
 })
 
 router.delete('/deleteDatesEventID/:event_ID', (req, res)=>{
-  queries.deleteDateEventID(req.params.event_ID)
+  queries.deleteDatesEventID(req.params.event_ID)
     .then(date=>{
       res.json(date)
     })
