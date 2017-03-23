@@ -35,4 +35,20 @@ router.get('/:id', function(req, res){
   })
 })
 
+
+// **************************** UPDATE ****************************
+
+// ^^^^^^ Update User ^^^^^^
+
+router.put('/:id', function (req, res){
+
+  Users().where('id', req.params.id).update({
+    name: req.body.name,
+    email: req.body.email
+  })
+  .then(function(result){
+      res.json(result)
+  })
+})
+
 module.exports = router
