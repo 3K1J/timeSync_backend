@@ -28,7 +28,7 @@ router.get('/', function (req, res){
       .join('events_users', 'events_users.user_id', '=', 'user.id')
       .where('event_id', req.query.event_id)
 }
-      .select().then(function(result){
+      getNames.select().then(function(result){
       res.json(result)
   })
 })
