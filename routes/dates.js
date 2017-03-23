@@ -41,8 +41,22 @@ router.patch('/patchDateDateID/:date_ID', (req, res)=>{
     })
 })
 
-router.patch('/patchDateEventID/:event_ID', (req, res)=>{
+router.patch('/patchDatesEventID/:event_ID', (req, res)=>{
   queries.patchDateEventID(req.params.event_ID, req.body)
+    .then(date=>{
+      res.json(date)
+    })
+})
+
+router.delete('/deleteDateDateID/:date_ID', (req, res)=>{
+  queries.deleteDateDateID(req.params.date_ID)
+    .then(date=>{
+      res.json(date)
+    })
+})
+
+router.delete('/deleteDatesEventID/:event_ID', (req, res)=>{
+  queries.deleteDatesEventID(req.params.event_ID)
     .then(date=>{
       res.json(date)
     })
