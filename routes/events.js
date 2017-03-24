@@ -87,4 +87,15 @@ router.get('/:id/users', function(req, res){
   })
 })
 
+// **************************** DELETE ****************************
+
+// ^^^^^^ Delete User ^^^^^^
+
+router.delete('/:id', function(req, res){
+
+  Events().where('id', req.params.id).del().then(function(result){
+    res.json(result)
+  })
+})
+
 module.exports = router
