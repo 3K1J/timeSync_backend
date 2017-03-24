@@ -89,7 +89,7 @@ router.get('/:id/users', function(req, res){
 
 // **************************** DELETE ****************************
 
-// ^^^^^^ Delete User ^^^^^^
+// ^^^^^^ Delete Event ^^^^^^
 
 router.delete('/:id', function(req, res){
 
